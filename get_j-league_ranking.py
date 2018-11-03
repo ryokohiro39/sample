@@ -3,9 +3,9 @@ import urllib.request, urllib.parse
 from bs4 import BeautifulSoup
 
 for i in range(1,2):
-	urlo = "https://data.j-league.or.jp/SFRT01/?search=search&yearId=2017\
-                &yearIdLabel=2017年&competitionId=428&competitionIdLabel=明治安田生命Ｊ１リーグ\
-                &competitionSectionId=3&competitionSectionIdLabel=第３節&homeAwayFlg=%s"%(i)
+	urlo = "https://data.j-league.or.jp/SFRT01/?search=search&yearId=2017"\
+                "&yearIdLabel=2017年&competitionId=428&competitionIdLabel=明治安田生命Ｊ１リーグ"\
+                "&competitionSectionId=3&competitionSectionIdLabel=第３節&homeAwayFlg=%s"%(i)
 	url = urllib.parse.quote(urlo, safe=":/?=&")
 
 	html = urllib.request.urlopen(url)
@@ -24,7 +24,6 @@ for i in range(1,2):
 			for i in list:
 				for cell in row.findAll("td",{"class":"wd%s"%(i)}):
 					csvRow.append(cell.get_text())
-					print(i)
 					print(cell.get_text())
 				writer.writerow(csvRow)
 	finally:
